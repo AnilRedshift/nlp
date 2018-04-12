@@ -1,4 +1,8 @@
 {
+  "env": {
+    "shared-node-browser": true,
+    "jest": true,
+  },
   "extends": "airbnb-base",
   "rules": {
     "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
