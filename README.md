@@ -4,7 +4,7 @@ https://github.com/clips/pattern/ contains a suite of NLP tools, written in pyth
 The codebase is compatible with both browsers as well as node.
 
 ## Currently implemented
-v0.0.1 - `en.singularize()`
+v0.0.18 - `en.singularize()`
 
 ## Usage
 ```
