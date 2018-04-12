@@ -1,6 +1,6 @@
 {
   "name": "@anilredshift/nlp",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Javascript port of clips/pattern NLP utilities",
   "browser": "dist/nlp.bundle.js",
   "main": "dist/nlp.node.js",
