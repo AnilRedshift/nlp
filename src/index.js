@@ -1,3 +1,9 @@
-import someModule from './someModule';
+import { singularize } from './text/en/inflect';
 
-console.log(someModule());
+const api = {
+  en: {
+    singularize,
+  },
+};
+
+export default api;

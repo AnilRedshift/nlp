@@ -13,7 +13,9 @@
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "eslint": "npx eslint src",
     "test": "jest",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "postversion": "git push && git push --tags && npm publish",
+    "publish": "npm version patch"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
