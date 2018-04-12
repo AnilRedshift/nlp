@@ -1,5 +1,7 @@
 import { singularize } from './inflect';
 
 describe('singularize', () => {
-  expect(singularize('appointments')).toBe('appointment');
+  test('words ending in s should be singular', () => {
+    expect(singularize('appointments')).toBe('appointment');
+  });
 });

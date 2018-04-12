@@ -186,7 +186,7 @@ const singularize = (word, pos = NOUN, custom = {}) => {
 
   // eslint-disable-next-line prefer-const
   for (let [suffix, inflection] of singularRules) {
-    const m = suffix.match(word);
+    const m = word.match(suffix);
     const g = (m || []).slice(1);
     if (m) {
       for (let k = 0; k < g.length; k += 1) {
@@ -194,7 +194,7 @@ const singularize = (word, pos = NOUN, custom = {}) => {
           inflection = inflection.replace(`${'\\'}${k + 1}`, '');
         }
       }
-      return inflection.replace(suffix, word);
+      return word.replace(suffix, inflection);
     }
   }
   return word;
