@@ -18,6 +18,14 @@ describe('singularize', () => {
     expect(singularize('arentheses')).toBe('arenthesis');
   });
 
+  test('singularIrregular workmen is workman', () => {
+    expect(singularize('workmen')).toBe('workman');
+  });
+
+  test('singularIe rookies is rookie', () => {
+    expect(singularize('rookies')).toBe('rookie');
+  });
+
   test('corpora matches', (done) => {
     let total = 0;
     let correct = 0;
@@ -36,7 +44,8 @@ describe('singularize', () => {
       .on('done', () => {
         fs.writeFileSync('failures.log', JSON.stringify(failures, null, 2), 'utf8');
         const accuracy = correct / total;
-        console.log(`singularize accuracy is ${accuracy.toFixed(2)}`);
+        // eslint-disable-next-line no-console
+        console.debug(`singularize accuracy is ${accuracy.toFixed(2)}`);
         expect(accuracy).toBeGreaterThan(0.95);
         done();
       });

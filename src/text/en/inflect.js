@@ -173,7 +173,7 @@ const singularize = (word, pos = NOUN, custom = {}) => {
 
   for (const x of singularIe) {
     if (w.endsWith(`${x}s`)) {
-      return word;
+      return x;
     }
   }
 
