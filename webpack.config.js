@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const getBaseConfig = () => ({
 	entry: './src/index',
@@ -17,6 +18,9 @@ const getBaseConfig = () => ({
 			}
 		]
 	},
+  plugins: [
+    new CleanWebpackPlugin(['dist'])
+  ],
 });
 
 const clientOverrides = {
