@@ -14,8 +14,7 @@
     "eslint": "npx eslint src",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
-    "postversion": "git push && git push --tags && npm publish",
-    "publish": "npm version patch"
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
