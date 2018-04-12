@@ -1,49 +1,49 @@
 const NOUN = 'NN';
 
 const singularRules = [
-  [/(.)ae$/i, '\\1a'],
-  [/(.)itis$/i, '\\1itis'],
-  [/(.)eaux$/i, '\\1eau'],
-  [/(quiz)zes$/i, '\\1'],
-  [/(matr)ices$/i, '\\1ix'],
-  [/(ap|vert|ind)ices$/i, '\\1ex'],
-  [/^(ox)en/i, '\\1'],
-  [/(alias|status)es$/i, '\\1'],
-  [/([octop|vir])i$/i, '\\1us'],
-  [/(cris|ax|test)es$/i, '\\1is'],
-  [/(shoe)s$/i, '\\1'],
-  [/(o)es$/i, '\\1'],
-  [/(bus)es$/i, '\\1'],
-  [/([m|l])ice$/i, '\\1ouse'],
-  [/(x|ch|ss|sh)es$/i, '\\1'],
-  [/(m)ovies$/i, '\\1ovie'],
-  [/(.)ombies$/i, '\\1ombie'],
-  [/(s)eries$/i, '\\1eries'],
-  [/([^aeiouy]|qu)ies$/i, '\\1y'],
+  [/(.)ae$/i, '$1a'],
+  [/(.)itis$/i, '$1itis'],
+  [/(.)eaux$/i, '$1eau'],
+  [/(quiz)zes$/i, '$1'],
+  [/(matr)ices$/i, '$1ix'],
+  [/(ap|vert|ind)ices$/i, '$1ex'],
+  [/^(ox)en/i, '$1'],
+  [/(alias|status)es$/i, '$1'],
+  [/([octop|vir])i$/i, '$1us'],
+  [/(cris|ax|test)es$/i, '$1is'],
+  [/(shoe)s$/i, '$1'],
+  [/(o)es$/i, '$1'],
+  [/(bus)es$/i, '$1'],
+  [/([m|l])ice$/i, '$1ouse'],
+  [/(x|ch|ss|sh)es$/i, '$1'],
+  [/(m)ovies$/i, '$1ovie'],
+  [/(.)ombies$/i, '$1ombie'],
+  [/(s)eries$/i, '$1eries'],
+  [/([^aeiouy]|qu)ies$/i, '$1y'],
   // -f, -fe sometimes take -ves in the plural
   // (e.g., lives, wolves).
-  [/([aeo]l)ves$/, '\\1f'],
-  [/([^d]ea)ves$/, '\\1f'],
+  [/([aeo]l)ves$/, '$1f'],
+  [/([^d]ea)ves$/, '$1f'],
   [/arves$/, 'arf'],
   [/erves$/, 'erve'],
-  [/([nlw]i)ves$/, '\\1fe'],
-  [/([lr])ves$/i, '\\1f'],
-  [/([aeo])ves$/, '\\1ve'],
-  [/(sive)s$/i, '\\1'],
-  [/(tive)s$/i, '\\1'],
-  [/(hive)s$/i, '\\1'],
-  [/([^f])ves$/i, '\\1fe'],
+  [/([nlw]i)ves$/, '$1fe'],
+  [/([lr])ves$/i, '$1f'],
+  [/([aeo])ves$/, '$1ve'],
+  [/(sive)s$/i, '$1'],
+  [/(tive)s$/i, '$1'],
+  [/(hive)s$/i, '$1'],
+  [/([^f])ves$/i, '$1fe'],
   // -ses suffixes.
-  [/(^analy)ses$/i, '\\1sis'],
-  [/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i, '\\1\\2sis'],
-  [/(.)opses$/i, '\\1opsis'],
-  [/(.)yses$/i, '\\1ysis'],
-  [/(h|d|r|o|n|b|cl|p)oses$/i, '\\1ose'],
-  [/(fruct|gluc|galact|lact|ket|malt|rib|sacchar|cellul)ose$/i, '\\1ose'],
-  [/(.)oses$/i, '\\1osis'],
+  [/(^analy)ses$/i, '$1sis'],
+  [/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i, '$1$2sis'],
+  [/(.)opses$/i, '$1opsis'],
+  [/(.)yses$/i, '$1ysis'],
+  [/(h|d|r|o|n|b|cl|p)oses$/i, '$1ose'],
+  [/(fruct|gluc|galact|lact|ket|malt|rib|sacchar|cellul)ose$/i, '$1ose'],
+  [/(.)oses$/i, '$1osis'],
   // -a
-  [/([ti])a$/i, '\\1um'],
-  [/(n)ews$/i, '\\1ews'],
+  [/([ti])a$/i, '$1um'],
+  [/(n)ews$/i, '$1ews'],
   [/s$/i, ''],
 ];
 
@@ -149,7 +149,7 @@ const singularize = (word, pos = NOUN, custom = {}) => {
     const w = word.split('-');
     if (word.length > 1 && pluralPrepositions.has(w[1])) {
       const firstWord = singularize(w[0], pos, custom);
-      const secondWord = '-'.join(w.slice(1));
+      const secondWord = w.slice(1).join('-');
       return `${firstWord}-${secondWord}`;
     }
   }
@@ -179,8 +179,8 @@ const singularize = (word, pos = NOUN, custom = {}) => {
 
   for (const x of Object.keys(singularIrregular)) {
     if (w.endsWith(x)) {
-      const re = new RegExp(`(?i)${x}$`);
-      word.replace(re, singularIrregular[x]);
+      const re = new RegExp(`${x}$`, 'i');
+      return word.replace(re, singularIrregular[x]);
     }
   }
 
@@ -191,7 +191,7 @@ const singularize = (word, pos = NOUN, custom = {}) => {
     if (m) {
       for (let k = 0; k < g.length; k += 1) {
         if (!g[k]) {
-          inflection = inflection.replace(`${'\\'}${k + 1}`, '');
+          inflection = inflection.replace(`$${k + 1}`, '');
         }
       }
       return word.replace(suffix, inflection);
