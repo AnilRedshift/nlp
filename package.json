@@ -1,0 +1,24 @@
+{
+  "name": "@anilredshift/nlp",
+  "version": "0.0.1",
+  "description": "Javascript port of clips/pattern NLP utilities",
+  "browser": "dist/nlp.bundle.js",
+  "main": "dist/nlp.node.js",
+  "repository": "git@github.com:AnilRedshift/nlp.git",
+  "author": "Anil Kulkarni <anil@terminal.space>",
+  "license": "BSD",
+  "private": false,
+  "scripts": {
+    "build:dev": "npx webpack"
+  },
+  "devDependencies": {
+    "webpack": "^4.5.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+  }
+}
