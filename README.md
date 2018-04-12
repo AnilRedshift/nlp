@@ -19,7 +19,7 @@ nlp.en.singularize('rookies'); // returns 'rookie'
 `yarn build`
 
 ## Distributing
-`yarn publish`
+`npm version patch && yarn deploy`
 
 
 ## Running the tests
