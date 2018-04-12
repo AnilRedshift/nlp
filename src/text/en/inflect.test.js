@@ -10,6 +10,14 @@ describe('singularize', () => {
     expect(singularize('appointments')).toBe('appointment');
   });
 
+  test('parentheses is parenthesis', () => {
+    expect(singularize('parentheses')).toBe('parenthesis');
+  });
+
+  test('arentheses is arenthesis', () => {
+    expect(singularize('arentheses')).toBe('arenthesis');
+  });
+
   test('corpora matches', (done) => {
     let total = 0;
     let correct = 0;
