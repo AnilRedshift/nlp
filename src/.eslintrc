@@ -5,6 +5,7 @@
   },
   "extends": "airbnb-base",
   "rules": {
+    "no-param-reassign": "off",
     "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
   }
 }
