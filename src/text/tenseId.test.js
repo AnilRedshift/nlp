@@ -82,4 +82,45 @@ describe('convertArgs', () => {
   test('0 person becomes null', () => {
     expect(convertArgs({ person: 0 }).person).toBe(null);
   });
+
+  test('fix perfective mood', () => {
+    expect(convertArgs({ mood: c.PERFECTIVE })).toMatchObject({
+      mood: c.INDICATIVE,
+      aspect: c.PERFECTIVE,
+    });
+  });
+
+  test('fix imperfective mood', () => {
+    expect(convertArgs({ mood: c.IMPERFECTIVE })).toMatchObject({
+      mood: c.INDICATIVE,
+      aspect: c.IMPERFECTIVE,
+    });
+  });
+
+  test('fix imperfect tense', () => {
+    expect(convertArgs({ tense: c.IMPERFECT })).toMatchObject({
+      tense: c.PAST,
+      aspect: c.IMPERFECTIVE,
+    });
+  });
+
+  test('fix preterite tense', () => {
+    expect(convertArgs({ tense: c.PRETERITE })).toMatchObject({
+      tense: c.PAST,
+      aspect: c.PERFECTIVE,
+    });
+  });
+
+  test('fix continuous aspect', () => {
+    expect(convertArgs({ aspect: c.CONTINUOUS })).toMatchObject({
+      aspect: c.PROGRESSIVE,
+    });
+  });
+
+  test('conditional tense and indicative mood', () => {
+    expect(convertArgs({ tense: c.CONDITIONAL, mood: c.INDICATIVE })).toMatchObject({
+      tense: c.PRESENT,
+      mood: c.CONDITIONAL,
+    });
+  });
 });
