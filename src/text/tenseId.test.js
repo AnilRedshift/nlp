@@ -23,4 +23,15 @@ describe('convertArgs', () => {
       negated: false,
     });
   });
+
+  test('first arg is [past, participle]', () => {
+    expect(convertArgs([c.PAST, c.PARTICIPLE])).toEqual({
+      tense: c.PAST,
+      person: null,
+      number: null,
+      mood: c.INDICATIVE,
+      aspect: c.PROGRESSIVE,
+      negated: false,
+    });
+  });
 });
