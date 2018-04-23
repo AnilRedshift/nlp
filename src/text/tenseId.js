@@ -128,8 +128,17 @@ const convertArgs = (...args) => {
 };
 
 const tenseId = (...args) => {
-  // eslint-disable-next-line
-  const opts = convertArgs(...args);
+  const {
+    tense,
+    person,
+    number,
+    mood,
+    aspect,
+    negated,
+  } = convertArgs(...args);
+  return c.TENSES_ID.has(tense) ?
+    c.TENSES_ID.get(tense) :
+    c.TENSES_ID.get(JSON.stringify([tense, person, number, mood, aspect, negated]));
 };
 
 export { convertArgs };
