@@ -20,13 +20,17 @@ const get = ({
   } else {
     val = defaultVal;
   }
+
+  if (name === 'person' && !val) {
+    val = null;
+  }
   return val;
 };
 
 const convertArgs = (...args) => {
   const defaults = [
     ['tense', c.PRESENT],
-    ['person', null],
+    ['person', 3],
     ['number', c.SINGULAR],
     ['mood', c.INDICATIVE],
     ['aspect', c.IMPERFECTIVE],
