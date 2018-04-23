@@ -29,16 +29,15 @@ const convertArgs = (...args) => {
     ['person', null],
     ['number', c.SINGULAR],
     ['mood', c.INDICATIVE],
-    ['aspect', c.IMPERATIVE],
+    ['aspect', c.IMPERFECTIVE],
     ['negated', false],
   ];
 
   const opts = {};
   if ((args.length === 1) &&
       (args[0] instanceof Array) &&
-      (arraysEqual(args[0], [c.PRESENT, c.PARTICIPLE]) ||
-        arraysEqual(args[0], [c.PAST, c.PARTICIPLE])
-      )
+      !arraysEqual(args[0], [c.PRESENT, c.PARTICIPLE]) &&
+      !arraysEqual(args[0], [c.PAST, c.PARTICIPLE])
   ) {
     // eslint-disable-next-line prefer-destructuring
     args = args[0];
@@ -47,7 +46,9 @@ const convertArgs = (...args) => {
   let kwargs = {};
   if (args.length > 0) {
     const lastArg = args[args.length - 1];
-    if (typeof lastArg === 'object') {
+    if ((typeof lastArg === 'object') &&
+        !(lastArg instanceof Array) &&
+        !(lastArg instanceof String)) {
       kwargs = lastArg;
       args.length -= 1;
     }
@@ -80,7 +81,7 @@ const convertArgs = (...args) => {
     opts.negated = false;
   }
 
-  if (arraysEqual(opts.tense, [c.PAST, c.PARTICIPLE]) ||
+  if (arraysEqual(opts.tense, [c.PRESENT, c.PARTICIPLE]) ||
     (opts.tense === c.PRESENT + c.PARTICIPLE) ||
     (opts.tense === c.PARTICIPLE) ||
     (opts.tense === c.GERUND)
