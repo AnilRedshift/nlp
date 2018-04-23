@@ -122,18 +122,18 @@ for (const [i, [tense, person, number, mood, aspect, negated, aliases]] of Objec
   for (const a of aliases.concat([i])) {
     TENSES_ID.set(i, i);
     TENSES_ID.set(a, i);
-    TENSES_ID.set([tense, person, number, mood, aspect, negated], i);
+    TENSES_ID.set(JSON.stringify([tense, person, number, mood, aspect, negated]), i);
   }
 
   if (number === SINGULAR) {
     for (const sg of ['s', 'sg', 'singular']) {
-      TENSES_ID.set([tense, person, sg, mood, aspect, negated], i);
+      TENSES_ID.set(JSON.stringify([tense, person, sg, mood, aspect, negated]), i);
     }
   }
 
   if (number === PLURAL) {
     for (const pl of ['p', 'pl', 'plural']) {
-      TENSES_ID.set([tense, person, pl, mood, aspect, negated], i);
+      TENSES_ID.set(JSON.stringify([tense, person, pl, mood, aspect, negated]), i);
     }
   }
 }
