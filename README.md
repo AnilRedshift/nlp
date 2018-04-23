@@ -5,6 +5,7 @@ The codebase is compatible with both browsers as well as node.
 
 ## Currently implemented
 v0.0.18 - `en.singularize()`
+v0.0.19 - `tenseId() and constants`
 
 ## Usage
 ```
