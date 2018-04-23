@@ -116,6 +116,40 @@ const TENSES = {
   72: [PST, 3, PL, SJV, IPFV, false, ['3ppl?']], //  they           fueran    wären               fussent
 };
 
+const TENSES_ID = new Map();
+TENSES_ID.set(INFINITIVE, 0);
+for (const [i, [tense, person, number, mood, aspect, negated, aliases]] of Object.entries(TENSES)) {
+  for (const a of aliases.concat([i])) {
+    TENSES_ID.set(i, i);
+    TENSES_ID.set(a, i);
+    TENSES_ID.set([tense, person, number, mood, aspect, negated], i);
+  }
+
+  if (number === SINGULAR) {
+    for (const sg of ['s', 'sg', 'singular']) {
+      TENSES_ID.set([tense, person, sg, mood, aspect, negated], i);
+    }
+  }
+
+  if (number === PLURAL) {
+    for (const pl of ['p', 'pl', 'plural']) {
+      TENSES_ID.set([tense, person, pl, mood, aspect, negated], i);
+    }
+  }
+}
+
+const treebankTags = [
+  ['VB', 0], // infinitive
+  ['VBP', 1], // present 1 singular
+  ['VBZ', 3], // present 3 singular
+  ['VBG', 8], // present participle
+  ['VBN', 24], // past participle
+  ['VBD', 25], // past
+];
+
+for (const [tag, tense] of treebankTags) {
+  TENSES_ID.set(tag.toLowerCase(), tense);
+}
 
 const constants = {
   CONDITIONAL,
@@ -137,6 +171,7 @@ const constants = {
   SINGULAR,
   SUBJUNCTIVE,
   TENSES,
+  TENSES_ID,
 };
 
 const proxy = new Proxy(constants, {
