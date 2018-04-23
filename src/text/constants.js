@@ -118,6 +118,7 @@ const TENSES = {
 
 const TENSES_ID = new Map();
 TENSES_ID.set(INFINITIVE, 0);
+// eslint-disable-next-line max-len
 for (const [iString, [tense, person, number, mood, aspect, negated, aliases]] of Object.entries(TENSES)) {
   const i = parseInt(iString, 10);
   for (const a of aliases.concat([i])) {

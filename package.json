@@ -6,7 +6,7 @@
   "main": "dist/nlp.node.js",
   "repository": "git@github.com:AnilRedshift/nlp.git",
   "author": "Anil Kulkarni <anil@terminal.space>",
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "private": false,
   "scripts": {
     "build": "npx webpack",

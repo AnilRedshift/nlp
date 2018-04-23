@@ -200,4 +200,5 @@ const singularize = (word, pos = NOUN, custom = {}) => {
   return word;
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export { singularize };
