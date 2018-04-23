@@ -12,8 +12,7 @@ class Lazydict {
       },
       set: (target, key, value) => {
         this.ensureLoaded();
-        this.data[key] = value;
-        return true;
+        return Reflect.set(this.data, key, value);
       },
     };
     return new Proxy(this.data, handler);
