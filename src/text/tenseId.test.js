@@ -1,4 +1,4 @@
-import { convertArgs } from './tenseId';
+import tenseId, { convertArgs } from './tenseId';
 import c from './constants';
 
 describe('convertArgs', () => {
@@ -121,6 +121,36 @@ describe('convertArgs', () => {
     expect(convertArgs({ tense: c.CONDITIONAL, mood: c.INDICATIVE })).toMatchObject({
       tense: c.PRESENT,
       mood: c.CONDITIONAL,
+    });
+  });
+
+  describe('tenseId', () => {
+    test('infinitive', () => {
+      expect(tenseId(c.INFINITIVE)).toBe(0);
+    });
+
+    test('combo w/negated false', () => {
+      const id = tenseId({
+        tense: c.PRESENT,
+        person: 3,
+        number: c.SINGULAR,
+        mood: c.INDICATIVE,
+        aspect: c.IMPERFECTIVE,
+        negated: false,
+      });
+      expect(id).toBe(3);
+    });
+
+    test('combo w/negated true', () => {
+      const id = tenseId({
+        tense: c.PRESENT,
+        person: 3,
+        number: c.SINGULAR,
+        mood: c.INDICATIVE,
+        aspect: c.IMPERFECTIVE,
+        negated: true,
+      });
+      expect(id).toBe(11);
     });
   });
 });

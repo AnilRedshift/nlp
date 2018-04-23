@@ -118,7 +118,8 @@ const TENSES = {
 
 const TENSES_ID = new Map();
 TENSES_ID.set(INFINITIVE, 0);
-for (const [i, [tense, person, number, mood, aspect, negated, aliases]] of Object.entries(TENSES)) {
+for (const [iString, [tense, person, number, mood, aspect, negated, aliases]] of Object.entries(TENSES)) {
+  const i = parseInt(iString, 10);
   for (const a of aliases.concat([i])) {
     TENSES_ID.set(i, i);
     TENSES_ID.set(a, i);
