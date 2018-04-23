@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  build:
     working_directory: ~/nlp
     docker:
       - image: circleci/node:9.6.1-browsers
